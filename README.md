@@ -12,10 +12,34 @@ and other apps that read `SKILL.md`.
 
 ![Example deck built by the skill](docs/example-contact-sheet.png)
 
+## Quick install
+
+**Claude Code** (two commands, inside Claude Code):
+```
+/plugin marketplace add auaii/Pitching-skill
+/plugin install pitch-deck-builder@auaii-pitching
+```
+
+**Codex CLI / ChatGPT desktop** (in your terminal):
+```bash
+codex plugin marketplace add auaii/Pitching-skill
+codex plugin add pitch-deck-builder@auaii-pitching
+```
+
+**Any agent at once** (Claude Code, Codex, Cursor, Gemini CLI and more), with Node.js:
+```bash
+npx skills add auaii/Pitching-skill -g
+```
+
+Then ask: *"Build a pitch deck for ..."*. Updates later:
+`/plugin marketplace update auaii-pitching` (Claude Code) or
+`codex plugin marketplace upgrade auaii-pitching` (Codex).
+Other apps (Kiro Crew, claude.ai, ChatGPT web) are in [Install](#install).
+
 ## What's inside
 
 ```
-pitch-deck-builder/            <- the skill (copy or upload this folder)
+skills/pitch-deck-builder/     <- the skill (copy or upload this folder)
   SKILL.md                     principles + 7-stage workflow (loaded when the skill runs)
   references/                  read on demand: structure, layouts, design rules,
                                speaker-notes format, gotchas, a worked example
@@ -29,7 +53,10 @@ pitch-deck-builder/            <- the skill (copy or upload this folder)
     audit.py                   checks any .pptx against the rules
   agents/openai.yaml           display info for ChatGPT / Codex
   requirements.txt
-install.sh                     installs for Kiro Crew / Claude Code / Codex
+.claude-plugin/                Claude Code plugin + marketplace manifests
+.codex-plugin/plugin.json      Codex / ChatGPT plugin manifest
+.agents/plugins/marketplace.json  Codex marketplace catalog
+install.sh                     copies the skill for Kiro Crew / Claude Code / Codex
 tools/package.sh               builds the ZIP for upload-based apps
 platforms/chatgpt-custom-gpt.md  setup for ChatGPT without Skills (Custom GPT / Project)
 ```
@@ -39,12 +66,12 @@ platforms/chatgpt-custom-gpt.md  setup for ChatGPT without Skills (Custom GPT / 
 | App | How |
 |---|---|
 | **Kiro Crew** | Settings -> Skills -> Discover -> type `auaii/Pitching-skill` -> install. Or `./install.sh kiro` |
-| **Claude Code** | `./install.sh claude` (copies to `~/.claude/skills/`) |
+| **Claude Code** | Plugin (see [Quick install](#quick-install)), or `./install.sh claude` (copies to `~/.claude/skills/`) |
 | **claude.ai** (web/desktop) | Download `pitch-deck-builder.zip` from [Releases](https://github.com/auaii/Pitching-skill/releases) -> Settings -> Capabilities -> Skills -> Upload |
 | **Claude API** | Upload the folder through the Skills API |
-| **ChatGPT desktop / Codex CLI** | `./install.sh codex` (copies to `~/.agents/skills/`), then mention it with `@` (ChatGPT) or `$` (Codex) |
+| **ChatGPT desktop / Codex CLI** | Plugin (see [Quick install](#quick-install)), or `./install.sh codex` (copies to `~/.agents/skills/`). Mention it with `@` (ChatGPT) or `$` (Codex) |
 | **ChatGPT web, no Skills** | Follow [platforms/chatgpt-custom-gpt.md](platforms/chatgpt-custom-gpt.md) to make a Custom GPT |
-| **Other Agent Skills apps** | Copy `pitch-deck-builder/` into the app's skills folder |
+| **Other Agent Skills apps** | `npx skills add auaii/Pitching-skill`, or copy `skills/pitch-deck-builder/` into the app's skills folder |
 
 ```bash
 git clone https://github.com/auaii/Pitching-skill.git
@@ -56,7 +83,7 @@ cd Pitching-skill
 An existing copy is moved to `<app>/skill-backups/` first, never deleted.
 
 **Optional tools for building and checking the .pptx:**
-Python 3.9+ with `pip install -r pitch-deck-builder/requirements.txt`,
+Python 3.9+ with `pip install -r skills/pitch-deck-builder/requirements.txt`,
 LibreOffice, and poppler (`pdftoppm`). On macOS:
 `brew install --cask libreoffice && brew install poppler`.
 Without them the skill still works in **content mode**: it delivers the brief, outline,
@@ -75,7 +102,7 @@ chosen points and the outline.
 Run the tools yourself:
 
 ```bash
-cd pitch-deck-builder/scripts
+cd skills/pitch-deck-builder/scripts
 python gen_backgrounds.py --out build/bg
 python example_deck.py --out build/example.pptx --backgrounds build/bg
 ./render.sh build/example.pptx                 # PNGs + contact sheet
@@ -90,6 +117,8 @@ python audit.py build/example.pptx --minutes 15 --jargon "API,LLM"
 | WARN | no hand-off line, timing vs slot, notes too long to say in time, 30/40/30 ratio, a statistic without a source, hype words, jargon you list |
 
 ## Changelog
+- **2.1.0** One-command install as a Claude Code plugin and a Codex plugin; works with
+  `npx skills add`; skill moved to the standard `skills/pitch-deck-builder/` path.
 - **2.0.0** Multi-app Agent Skills format; progressive disclosure (`references/`);
   build, render and audit scripts; templates; Thai fonts and Thai triggers; content mode;
   worked example; ChatGPT Custom GPT setup.
@@ -132,7 +161,13 @@ Claude, ChatGPT/Codex และแอปอื่นที่รองรับ�
 ### ติดตั้ง
 ดูตาราง [Install](#install) ด้านบน สรุปสั้นๆ:
 - **Kiro Crew:** Settings → Skills → Discover → พิมพ์ `auaii/Pitching-skill`
-- **Claude Code / Codex / ChatGPT desktop:** `./install.sh`
+- **Claude Code:** พิมพ์ใน Claude Code 2 คำสั่ง
+  `/plugin marketplace add auaii/Pitching-skill` แล้ว
+  `/plugin install pitch-deck-builder@auaii-pitching`
+- **Codex / ChatGPT desktop:** พิมพ์ใน terminal 2 คำสั่ง
+  `codex plugin marketplace add auaii/Pitching-skill` แล้ว
+  `codex plugin add pitch-deck-builder@auaii-pitching`
+- **ทุกแอปในคำสั่งเดียว (ต้องมี Node.js):** `npx skills add auaii/Pitching-skill -g`
 - **claude.ai:** อัปโหลดไฟล์ ZIP จากหน้า Releases
 - **ChatGPT web ที่ไม่มี Skills:** ทำ Custom GPT ตาม `platforms/chatgpt-custom-gpt.md`
 

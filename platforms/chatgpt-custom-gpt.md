@@ -7,7 +7,7 @@ the same method through its instructions and uploaded knowledge files.
 1. ChatGPT -> Explore GPTs -> Create -> Configure (or create a Project).
 2. **Name:** Pitch Deck Builder.
 3. **Instructions:** paste everything inside the box below (under 8,000 characters).
-4. **Knowledge:** upload these files from `pitch-deck-builder/`:
+4. **Knowledge:** upload these files from `skills/pitch-deck-builder/`:
    `SKILL.md`, `references/structure.md`, `references/layouts.md`,
    `references/design-rules.md`, `references/speaker-notes.md`,
    `assets/brief-template.md`, `assets/outline-template.md`, `assets/objections-template.md`,

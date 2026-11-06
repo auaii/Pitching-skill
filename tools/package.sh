@@ -7,7 +7,7 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 mkdir -p "$root/dist"
 out="$root/dist/pitch-deck-builder.zip"
 rm -f "$out"
-cd "$root"
+cd "$root/skills"
 zip -qr "$out" pitch-deck-builder -x '*/__pycache__/*' '*.pyc' '*/.DS_Store'
 echo "built $out ($(du -h "$out" | cut -f1))"
 zipinfo -1 "$out" | sed 's/^/  /'

@@ -4,7 +4,7 @@ description: Plan and build a persuasive pitch deck or sales presentation for a 
 license: MIT
 compatibility: Works with any Agent Skills client. Building the .pptx needs Python 3.9+ with python-pptx and Pillow; rendering needs LibreOffice and pdftoppm. Without code execution, deliver content only (brief, outline, slide spec, notes).
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
   author: auaii
 ---
 

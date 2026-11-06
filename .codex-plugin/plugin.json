@@ -1,0 +1,20 @@
+{
+  "name": "pitch-deck-builder",
+  "version": "2.1.0",
+  "description": "Plan, build and audit a persuasive pitch deck for non-technical buyers: 5W1H brief, 6-step story, sourced evidence, editable .pptx with speaker notes.",
+  "author": {
+    "name": "auaii",
+    "url": "https://github.com/auaii"
+  },
+  "homepage": "https://github.com/auaii/Pitching-skill",
+  "repository": "https://github.com/auaii/Pitching-skill",
+  "license": "MIT",
+  "keywords": ["pitch", "presentation", "pptx", "sales", "slides"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Pitch Deck Builder",
+    "shortDescription": "Plan, build and audit a pitch deck for non-technical buyers",
+    "category": "Productivity",
+    "brandColor": "#F7A81E"
+  }
+}

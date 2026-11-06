@@ -10,7 +10,7 @@
 set -euo pipefail
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-src="$here/pitch-deck-builder"
+src="$here/skills/pitch-deck-builder"
 [ -f "$src/SKILL.md" ] || { echo "error: $src/SKILL.md not found" >&2; exit 2; }
 
 app_home() {

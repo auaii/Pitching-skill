@@ -1,0 +1,18 @@
+{
+  "name": "auaii-pitching",
+  "owner": {
+    "name": "auaii",
+    "url": "https://github.com/auaii"
+  },
+  "metadata": {
+    "description": "Pitch Deck Builder skill for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "pitch-deck-builder",
+      "source": "./",
+      "description": "Plan, build and audit a persuasive pitch deck for non-technical buyers.",
+      "category": "productivity"
+    }
+  ]
+}
