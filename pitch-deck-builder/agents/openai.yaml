@@ -1,0 +1,8 @@
+interface:
+  display_name: "Pitch Deck Builder"
+  short_description: "Plan, build and audit a persuasive pitch deck for non-technical buyers"
+  brand_color: "#F7A81E"
+  default_prompt: "Help me build a pitch deck for"
+
+policy:
+  allow_implicit_invocation: true
