@@ -14,6 +14,8 @@ Import it from your own build script:
 
 Every layout helper draws the common frame (kicker, logo, product name, page
 number) and returns the slide, so you add speaker notes right after it.
+AI-generated pictures: prepare them with prep_image.py, then use Deck.set_background()
+or Deck.image() (references/image-generation.md).
 Cards are named "card" so scripts/audit.py can count sub-points per slide.
 All text stays real, editable text. Backgrounds are images only when
 Theme.backgrounds_dir points at the output of scripts/gen_backgrounds.py.
@@ -239,11 +241,51 @@ class Deck:
             name = "light-" + "ab"[self._page % 2]
         p = self._bg_path(name)
         if p:
-            s.shapes.add_picture(p, 0, 0, width=self.W, height=self.H)
+            bg = s.shapes.add_picture(p, 0, 0, width=self.W, height=self.H)
         else:
-            self.rect(s, 0, 0, self.W, self.H, self.t.ink if (dark or hero) else self.t.paper)
+            bg = self.rect(s, 0, 0, self.W, self.H, self.t.ink if (dark or hero) else self.t.paper)
+        bg.name = "background"
         s._kit_dark = dark or hero  # remembered for frame()
         return s
+
+    def set_background(self, slide, path: str):
+        """Replace the slide's background with an image (e.g. one prepared with prep_image.py)."""
+        tree = slide.shapes._spTree
+        for old in [sh for sh in slide.shapes if sh.name == "background"]:
+            tree.remove(old._element)
+        pic = slide.shapes.add_picture(path, 0, 0, width=self.W, height=self.H)
+        tree.remove(pic._element)
+        tree.insert(2, pic._element)  # first after the required group properties = bottom of z-order
+        pic.name = "background"
+        return pic
+
+    def image(self, slide, path: str, x, y, w, h, radius: Optional[float] = None):
+        """Place an illustration in a box, cropped to fill it (no stretching).
+
+        Text never goes inside generated images; put it beside them as real text.
+        radius: optional rounded corners (0-0.5), drawn as a rounded-rectangle picture crop.
+        """
+        from PIL import Image as _Img
+        with _Img.open(path) as im:
+            iw, ih = im.size
+        pic = slide.shapes.add_picture(path, Emu(int(x)), Emu(int(y)), width=Emu(int(w)), height=Emu(int(h)))
+        box, img = w / h, iw / ih
+        if img > box:   # image wider than the box: trim left/right
+            t = (1 - box / img) / 2
+            pic.crop_left = pic.crop_right = t
+        elif img < box:  # taller: trim top/bottom
+            t = (1 - img / box) / 2
+            pic.crop_top = pic.crop_bottom = t
+        if radius is not None:
+            geom = pic._element.spPr.find(qn("a:prstGeom"))
+            geom.set("prst", "roundRect")
+            av = geom.find(qn("a:avLst"))
+            if av is None:
+                av = geom.makeelement(qn("a:avLst"), {})
+                geom.append(av)
+            av.append(av.makeelement(qn("a:gd"), {"name": "adj", "fmla": f"val {int(radius * 100000)}"}))
+        pic.name = "illustration"
+        return pic
 
     def kicker(self, slide, label: str, x=None, y=Inches(0.8)):
         x = self.MARGIN if x is None else x

@@ -10,10 +10,11 @@ the same method through its instructions and uploaded knowledge files.
 4. **Knowledge:** upload these files from `skills/pitch-deck-builder/`:
    `SKILL.md`, `references/structure.md`, `references/layouts.md`,
    `references/design-rules.md`, `references/speaker-notes.md`,
+   `references/image-generation.md`,
    `assets/brief-template.md`, `assets/outline-template.md`, `assets/objections-template.md`,
-   `scripts/deck_kit.py`, `scripts/example_deck.py`, `scripts/audit.py`.
-5. **Capabilities:** turn on Code Interpreter & Data Analysis (to build the .pptx) and
-   Web Search (for sourced statistics).
+   `scripts/deck_kit.py`, `scripts/example_deck.py`, `scripts/audit.py`, `scripts/prep_image.py`.
+5. **Capabilities:** turn on Code Interpreter & Data Analysis (to build the .pptx),
+   Image Generation (for backgrounds and illustrations) and Web Search (for sourced statistics).
 
 ## Instructions (paste this)
 
@@ -40,14 +41,19 @@ Workflow, in order, with a check at the end of each stage:
    and goal) in a 30/40/30 ratio of problem/solution/summary. Write the 5-sentence
    version and the outline (assets/outline-template.md). Get the user's agreement.
 4. Evidence: find sourced figures; cut overclaims like "one-click" or "seamless".
-5. Build: with Code Interpreter, use deck_kit.py (copy example_deck.py as the start) to
+5. Visuals: follow references/image-generation.md. Generate 3-6 images in ONE style line
+   (hero background with an empty dark centre, the analogy as a picture, a before/after
+   scene). Never put text, numbers or logos in an image. Ask before making more than 6.
+   If the code sandbox cannot open a generated image, ask the user to download it and
+   attach it, then fit it with prep_image.py.
+6. Build: with Code Interpreter, use deck_kit.py (copy example_deck.py as the start) to
    create an editable 16:9 .pptx. Every slide gets notes in the format of
    references/speaker-notes.md (TALK, ASK, TIME, PART, NEXT).
    Without code, deliver a slide-by-slide spec plus notes instead.
-6. Review: run audit.py on the .pptx and fix every FAIL. You cannot run LibreOffice here,
+7. Review: run audit.py on the .pptx and fix every FAIL. You cannot run LibreOffice here,
    so tell the user to open the file and check the look, and list what to check.
-7. Hand off: the file, the step table (step -> slides), sources, audit result, open items,
-   and offer objection prep (assets/objections-template.md).
+8. Hand off: the file, the step table (step -> slides), sources, audit result, open items,
+   the image prompts used, and offer objection prep (assets/objections-template.md).
 
 Design rules for every slide: 1 message, at most 2 fonts, 3 colours, at most 4 sub-points.
 Never end on a "Thank you" or "Q&A" slide; the CTA is last. Translate every technical term.

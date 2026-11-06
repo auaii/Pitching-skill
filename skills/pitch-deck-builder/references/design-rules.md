@@ -38,8 +38,12 @@ the presenting machine, also hand over a PDF.
 - Label example numbers as "Example". Label sourced numbers with "Source: ...".
 
 ## Images and editability
+- With an image model (ChatGPT, Codex), generate decoration and metaphor pictures only;
+  see `references/image-generation.md`. Fit each one with `scripts/prep_image.py`.
 - Without an image model, paint backgrounds with code (`scripts/gen_backgrounds.py`:
   gradient + glows + faint dot grid + grain) and keep all text editable.
+- A picture behind text needs a scrim (darkened zone). The text-zone luminance should be
+  under 0.35 for light text; `prep_image.py` checks it.
 - Full-image slides look polished but the sales team cannot edit them. Use images for
   decoration, real text for words and numbers.
 - Use a company's real logo only with permission. Never mock up a customer logo.

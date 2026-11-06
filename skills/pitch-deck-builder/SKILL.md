@@ -4,7 +4,7 @@ description: Plan and build a persuasive pitch deck or sales presentation for a 
 license: MIT
 compatibility: Works with any Agent Skills client. Building the .pptx needs Python 3.9+ with python-pptx and Pillow; rendering needs LibreOffice and pdftoppm. Without code execution, deliver content only (brief, outline, slide spec, notes).
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
   author: auaii
 ---
 
@@ -23,13 +23,15 @@ Paths are relative to this skill's folder. Read a reference file only when its s
 | `references/layouts.md` | Stage 5: which layout fits each slide |
 | `references/design-rules.md` | Stage 5: 1-2-3-4 rule, writing rules, fonts (incl. Thai) |
 | `references/speaker-notes.md` | Stage 5: the notes format the audit reads |
+| `references/image-generation.md` | Stage 5, when the app has an image model (ChatGPT, Codex) |
 | `references/gotchas.md` | Something renders wrong, or a tool fails |
 | `references/example-ai-platform.md` | You want a finished real example of brief + outline |
 | `assets/brief-template.md`, `assets/outline-template.md` | Stages 1 and 3: copy and fill |
 | `assets/objections-template.md` | Stage 7: Q&A and objection prep |
 | `scripts/deck_kit.py` | Stage 5: python-pptx helpers, one function per layout |
 | `scripts/example_deck.py` | Stage 5: a complete 8-slide deck to copy as a start |
-| `scripts/gen_backgrounds.py` | Stage 5: paint background images with code |
+| `scripts/gen_backgrounds.py` | Stage 5: paint background images with code (no image model) |
+| `scripts/prep_image.py` | Stage 5: fit a generated image to a slide (crop, scrim, contrast check) |
 | `scripts/render.sh` | Stage 6: .pptx -> PDF -> PNG per slide + contact sheet |
 | `scripts/audit.py` | Stage 6: automatic rule checks on any .pptx |
 
@@ -124,11 +126,17 @@ rule in `references/design-rules.md`.
 ### Stage 5. Design and build
 1. Choose a layout per slide (`references/layouts.md`).
 2. Apply the 1-2-3-4 rule and the writing rules (`references/design-rules.md`).
-3. Full mode: start from `scripts/example_deck.py`, which uses `scripts/deck_kit.py`.
-   Optionally run `scripts/gen_backgrounds.py --out build/bg` and pass the folder as
-   `Theme(backgrounds_dir=...)`. Use real text, real logos (only with permission) and
-   speaker notes on every slide in the format of `references/speaker-notes.md`.
-4. Content mode: write the slide-by-slide spec and the notes in the same format.
+3. Visuals. If this app can generate images (ChatGPT image generation, Codex `image_gen`),
+   follow `references/image-generation.md`: 3-6 images in one style (hero background,
+   the analogy as a picture, a before/after scene), never with text, numbers or logos in
+   them, each fitted with `scripts/prep_image.py`. Without an image model, run
+   `scripts/gen_backgrounds.py --out build/bg`. Either way, pass the folder as
+   `Theme(backgrounds_dir=...)`.
+4. Full mode: start from `scripts/example_deck.py`, which uses `scripts/deck_kit.py`.
+   Use real text, real logos (only with permission) and speaker notes on every slide in
+   the format of `references/speaker-notes.md`.
+5. Content mode: write the slide-by-slide spec and the notes in the same format, plus an
+   image prompt for each slide that should have a picture.
 **Check:** the deck builds without errors and every slide has notes.
 
 ### Stage 6. Review
@@ -145,7 +153,8 @@ rule in `references/design-rules.md`.
 
 ### Stage 7. Hand off
 Give the user: the file path, the step table, the source list, the audit result, and the
-open items (placeholders, figures to confirm, contact details, logo permissions). Offer
+open items (placeholders, figures to confirm, contact details, logo permissions), and the
+image prompts used, so any picture can be regenerated. Offer
 the HOW extras: Q&A and objection prep (`assets/objections-template.md`), a PDF backup,
 a one-page handout, a rehearsal timing pass.
 
@@ -157,3 +166,4 @@ a one-page handout, a rehearsal timing pass.
 - Put more than 4 cards, bullets, steps or rows on one slide.
 - Show a raw technical term to a non-technical audience without translating it.
 - Use a real company's logo or name as a customer without the user confirming it is true.
+- Put words, numbers or logos inside a generated image. They go on the slide as real text.

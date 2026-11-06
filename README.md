@@ -48,6 +48,7 @@ skills/pitch-deck-builder/     <- the skill (copy or upload this folder)
     deck_kit.py                python-pptx helpers, one function per slide layout
     example_deck.py            a complete 8-slide deck to copy as a start
     gen_backgrounds.py         paints background images with code (no image AI needed)
+    prep_image.py              fits an AI-generated image to a slide (crop, scrim, contrast)
     render.sh                  .pptx -> PDF -> PNG per slide + contact sheet
     contact_sheet.py           used by render.sh
     audit.py                   checks any .pptx against the rules
@@ -117,6 +118,10 @@ python audit.py build/example.pptx --minutes 15 --jargon "API,LLM"
 | WARN | no hand-off line, timing vs slot, notes too long to say in time, 30/40/30 ratio, a statistic without a source, hype words, jargon you list |
 
 ## Changelog
+- **2.2.0** Uses the app's image model when there is one (ChatGPT image generation, Codex
+  `image_gen`): prompt recipes in one style, `prep_image.py` to crop, add a scrim and check
+  text contrast, `Deck.set_background()` and `Deck.image()`. No image model: painted
+  backgrounds as before.
 - **2.1.0** One-command install as a Claude Code plugin and a Codex plugin; works with
   `npx skills add`; skill moved to the standard `skills/pitch-deck-builder/` path.
 - **2.0.0** Multi-app Agent Skills format; progressive disclosure (`references/`);
@@ -173,6 +178,13 @@ Claude, ChatGPT/Codex และแอปอื่นที่รองรับ�
 
 ถ้าเครื่องไม่มี Python หรือ LibreOffice skill ยังใช้ได้ใน **content mode**
 (ได้ brief, outline, สเปกสไลด์ทีละหน้า และ speaker notes แต่ไม่ได้ไฟล์ .pptx)
+
+### ใช้ AI สร้างภาพ (ChatGPT / Codex)
+ถ้าแอปมีเครื่องมือสร้างภาพ skill จะสร้างภาพ 3-6 ภาพในสไตล์เดียวกันให้ เช่น พื้นหลังสไลด์เปิด
+ภาพ analogy และภาพ before/after โดยไม่ใส่ตัวหนังสือ ตัวเลข หรือโลโก้ลงในภาพ
+(ข้อความยังเป็น text ที่แก้ไขได้) จากนั้น `prep_image.py` จะครอปให้เป็น 16:9
+ทำให้ด้านหลังข้อความมืดลง และตรวจว่าตัวหนังสืออ่านออก ถ้าแอปไม่มีโมเดลภาพ
+skill จะวาดพื้นหลังด้วยโค้ดแทน รายละเอียดอยู่ที่ `references/image-generation.md`
 
 ### สไลด์ภาษาไทย
 Georgia และ Calibri ไม่มีตัวอักษรไทย ให้ใช้ `Theme(font_title="Tahoma", font_body="Tahoma")`
