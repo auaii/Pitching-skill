@@ -41,8 +41,8 @@ Other apps (Kiro Crew, claude.ai, ChatGPT web) are in [Install](#install).
 ```
 skills/pitch-deck-builder/     <- the skill (copy or upload this folder)
   SKILL.md                     principles + 7-stage workflow (loaded when the skill runs)
-  references/                  read on demand: structure, layouts, design rules,
-                               speaker-notes format, gotchas, a worked example
+  references/                  read on demand: structure, scene-led pitch, layouts,
+                               design rules, speaker-notes format, gotchas, a worked example
   assets/                      templates: brief, outline, objection prep
   scripts/
     deck_kit.py                python-pptx helpers, one function per slide layout
@@ -118,6 +118,11 @@ python audit.py build/example.pptx --minutes 15 --jargon "API,LLM"
 | WARN | no hand-off line, timing vs slot, notes too long to say in time, 30/40/30 ratio, a statistic without a source, hype words, jargon you list |
 
 ## Changelog
+- **2.3.0** Scene-led storytelling, learned from a strong real pitch: one persona, one
+  moment and one question run through the deck, the scene fails twice (the gap, then the
+  obvious fix), and is replayed with the right answer. New `references/scene-led-pitch.md`
+  (12 patterns, slide frame with a takeaway bar, example arc), 8 new layouts, buyer-role
+  and finite-pilot rules, limits stated on the slide, inline jargon gloss, more review checks.
 - **2.2.0** Uses the app's image model when there is one (ChatGPT image generation, Codex
   `image_gen`): prompt recipes in one style, `prep_image.py` to crop, add a scrim and check
   text contrast, `Deck.set_background()` and `Deck.image()`. No image model: painted
@@ -148,7 +153,7 @@ Claude, ChatGPT/Codex และแอปอื่นที่รองรับ�
 |---|---|---|
 | 1. Brief (5W1H) | ถามว่าใครฟัง (WHO) อยากให้ทำอะไรต่อ (WHY) พูดเรื่องอะไร (WHAT) ส่วนเวลา สถานที่ รูปแบบ ใช้ค่า default ได้ | ใช่ |
 | 2. เข้าใจสินค้า | อ่านสินค้าจริง แล้วให้ผู้ใช้เลือก 2-3 จุดเด่นที่สำคัญที่สุด | ใช่ |
-| 3. Storyline | เรียงเรื่องตามโครง 6 ขั้น สัดส่วน ปัญหา 30 / ทางออก 40 / สรุป 30 ใช้ analogy เดียวทั้ง deck | ใช่ (อนุมัติ outline) |
+| 3. Storyline | เรียงเรื่องตามโครง 6 ขั้น สัดส่วน ปัญหา 30 / ทางออก 40 / สรุป 30 เล่าด้วยเหตุการณ์เดียว (หรือ analogy เดียว) ทั้ง deck และเขียน takeaway ทุกสไลด์ | ใช่ (อนุมัติ outline) |
 | 4. หลักฐาน | หาตัวเลขที่มีแหล่งที่มา ตัดคำโอ้อวดเกินจริง | |
 | 5. สร้าง | ทำ .pptx ด้วย `deck_kit.py` พร้อม notes ทุกสไลด์ | |
 | 6. ตรวจ | render เป็นรูปแล้วดูทุกสไลด์ + รัน `audit.py` | |
@@ -156,7 +161,7 @@ Claude, ChatGPT/Codex และแอปอื่นที่รองรับ�
 
 ### หลักคิด 4 ข้อ
 1. **ชิมไม่ใช่กินทั้งมื้อ** โชว์แค่ 2-3 จุดที่สำคัญ เป้าหมายคือได้นัด demo ไม่ใช่ปิดการขาย
-2. **เล่าเป็นเรื่อง** เริ่มจากสิ่งที่ผู้ฟังรู้จัก ให้ผู้ฟังเป็นพระเอก ใช้ analogy เดียว สไลด์สุดท้ายตอบคำถามแรก
+2. **เล่าเป็นเรื่อง** ให้ผู้ฟังเป็นพระเอก ใช้เหตุการณ์เดียว (คนหนึ่งคน เวลาหนึ่งช่วง คำถามหนึ่งข้อ) ที่ล้มเหลวสองรอบแล้วเล่าซ้ำตอนท้ายด้วยคำตอบที่ถูก ถ้าไม่มีเหตุการณ์ที่เหมาะใช้ analogy เดียว สไลด์สุดท้ายตอบคำถามแรก
 3. **รู้เป้าก่อนยิง** ทุก pain และ benefit ต้องผูกกับ KPI ของผู้ฟัง ฟัง 70 พูด 30
 4. **ความจริง** ห้ามแต่งตัวเลข ชื่อลูกค้า หรือโลโก้ ตัวเลขทุกตัวต้องมีแหล่งที่มา หรือติดป้ายว่า "ตัวอย่าง"
 

@@ -4,7 +4,7 @@ description: Plan and build a persuasive pitch deck or sales presentation for a 
 license: MIT
 compatibility: Works with any Agent Skills client. Building the .pptx needs Python 3.9+ with python-pptx and Pillow; rendering needs LibreOffice and pdftoppm. Without code execution, deliver content only (brief, outline, slide spec, notes).
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
   author: auaii
 ---
 
@@ -20,6 +20,7 @@ Paths are relative to this skill's folder. Read a reference file only when its s
 | File | Read it when |
 |---|---|
 | `references/structure.md` | Stage 3: the 6-step structure, 30/40/30 ratio, summary pattern |
+| `references/scene-led-pitch.md` | Stage 3: the default story spine (one scene, fail twice, replay), takeaway bars, buyer roles, pilot slide |
 | `references/layouts.md` | Stage 5: which layout fits each slide |
 | `references/design-rules.md` | Stage 5: 1-2-3-4 rule, writing rules, fonts (incl. Thai) |
 | `references/speaker-notes.md` | Stage 5: the notes format the audit reads |
@@ -56,10 +57,15 @@ Say which mode you are in. Install dependencies with `pip install -r requirement
 **A2. Always tell a story.** A presentation is a story, never a list of slides.
 - Start from the familiar (what they already use), then move to the new idea.
 - The hero is the audience, not the product. The product helps the hero.
-- Build tension before the answer: problem -> cost -> turn -> reveal.
-- One analogy carries the whole story (e.g. bridge = a connection, gate = the control
-  point). Never switch metaphors.
-- Show a scene, not a claim: a concrete before/after beats an adjective.
+- **Prefer one scene over an analogy.** One persona, one moment, one question ("Monday,
+  9:00. The CFO asks..."). Play it at the start, fail it twice (the gap, then the obvious
+  fix), and replay it after the solution with the right answer. See
+  `references/scene-led-pitch.md`. Use an analogy (bridge, gate) only when no scene fits,
+  and never switch metaphors.
+- Build tension before the answer: problem -> today's workarounds -> the obvious fix fails
+  -> what it really takes -> reveal.
+- The status quo is the competitor. Name today's workarounds and what each one costs.
+- Show a scene, not a claim: a concrete wrong number beats the word "risk".
 - Every slide hands off to the next: the notes end with a lead-in line.
 - Close the loop: the last slide answers the opening question.
 - Test: the whole deck can be told in 5 sentences.
@@ -71,10 +77,16 @@ Say which mode you are in. Install dependencies with `pip install -r requirement
   question, put pauses and room questions in the notes, prepare 3-5 discovery questions.
 - **[K] + [F] + [C] = impact.** Each section and the whole deck needs a Key message, a
   Found story (an example, a scene) and a Call to action. Missing one: add it or cut the section.
+- **Win every seat at the table.** A deal has several buyers (executive, IT, security,
+  business user). Give each role its own fear in quotes and its own win, then ask for all
+  of them in the next meeting.
+- **Make the next step finite.** The pilot has a scope limit, a finish line, a sourced cost
+  estimate and "you decide what comes next". The CTA asks them to bring their own case.
 
 **A4. Truth.** Never invent statistics, customer names, quotes or logos. Every number on a
 slide has a source line or is labelled "Example". Claims match what the product does today.
-Missing data stays a visible placeholder and goes on the open-items list.
+Missing data stays a visible placeholder and goes on the open-items list. State limits on
+the slide ("Read-only in this release"); a stated limit builds trust and heads off the objection.
 
 ---
 
@@ -108,8 +120,11 @@ rule in `references/design-rules.md`.
 ### Stage 3. Write the storyline
 1. Map the story onto the 6-step structure and the 30/40/30 ratio (`references/structure.md`).
 2. Thread rule: the same 2-3 pains run question -> impact -> benefit -> feature -> recap,
-   with the same icon and the same words each time.
-3. Pick the single analogy.
+   with the same icon and the same words each time. In a scene-led deck the pains become
+   one-word pillars, each tied back to the moment the scene broke ("Where it broke: ...").
+3. Pick the spine: one scene (default, `references/scene-led-pitch.md`) or one analogy.
+   Write the takeaway-bar sentence for every slide; read in order, the bars alone must
+   tell the story.
 4. Write the outline with `assets/outline-template.md`: one line per slide, labelled with
    its step, its part (problem/solution/summary) and its layout.
 5. Write the 5-sentence version of the deck at the top of the outline.
@@ -147,7 +162,10 @@ rule in `references/design-rules.md`.
 3. Check by hand what a script cannot judge:
    - Every step of the 6-step structure is present and in order (step table: step -> slides)
    - Thread: no pain drops out between question, benefit, feature and recap
-   - One analogy only; the last slide answers the first slide's question
+   - One spine only (one scene or one analogy); the last slide answers the first slide's question
+   - Scene-led: the scene fails twice, and is replayed with the right answer before the summary
+   - Takeaway bars read in order tell the story; no two say the same thing
+   - Each buyer role in the room has a reason to say yes
    - The deck passes the 5-sentence test
 **Check:** the audit has no FAIL, and each manual item passes or is an open item.
 

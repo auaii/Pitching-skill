@@ -29,7 +29,13 @@ Example timing: a 20-minute pitch is about 6 / 8 / 6 minutes. A 10-minute pitch 
 
 For a short slot, merge Recap and Why us, and keep Next steps and CTA.
 
-## Typical story arc (familiar -> new)
+## Scene-led arc (default)
+See `scene-led-pitch.md`. In short: hook -> the scene fails -> today's workarounds ->
+the obvious fix fails -> what it really takes (pillars) -> product -> one slide per pillar
+-> the scene replayed with the right answer -> who gains -> why us -> how we start -> CTA
+("bring your own question"). The replay slide covers step 4 (benefits) by showing them.
+
+## Analogy arc (familiar -> new), when no single scene fits
 1. Opening question (no answer yet)
 2. What they already use (familiar tools, real logos)
 3. What is missing / what must connect

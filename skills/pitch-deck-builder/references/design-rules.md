@@ -33,6 +33,12 @@ the presenting machine, also hand over a PDF.
 - Impact/benefit cards: icon + pain question + one big figure or word + one sentence.
 - Headline pattern: small ALL-CAPS kicker + one large title.
 - Use names they know before introducing new ones.
+- Gloss a technical term once, inline, inside the story ("through MCP, the standard way AI
+  now uses company systems"). Name the product only after the problem is felt.
+- Pillars are one word (Access, Meaning, Control). Reuse them as chips on the architecture,
+  the replay slide and the CTA.
+- Restraint wins credibility: light background, one primary colour, one accent, one font
+  family, a fixed grid. A mono font is allowed only for code-like samples.
 - Avoid hype words: one-click, seamless, revolutionary, world-class, enterprise-grade,
   guaranteed. Say what it does and how long it takes.
 - Label example numbers as "Example". Label sourced numbers with "Source: ...".

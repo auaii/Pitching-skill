@@ -19,6 +19,21 @@ the primitives (`new_slide`, `kicker`, `title`, `card`, `icon_disc`, `line`, `te
 | Next steps | 6 | 3-4 numbered step cards + reassurance band | `steps()` |
 | CTA | 6, last | Hero background, closing title, call-back sentence, one button, contact line | `cta()` |
 
+### Scene-led layouts (see `scene-led-pitch.md`)
+| Layout | Step | Shape | deck_kit |
+|---|---|---|---|
+| Chat scene | 1, 5 | Time-stamp kicker, app-window mock-up with the persona's question and the AI's reply, "Illustrative example" label | build |
+| Two workarounds | 1 | 2 tall cards (icon + name + 3 ruled cost lines), takeaway bar | build |
+| Number vs number | 2 | AI answer card, "why they differ" numbered list in the middle, true-figure card; analyst quote callout below | build |
+| Pillars | 2-3 | 3 cards: one-word pillar + its question + what it takes + "Where it broke: ..." | build |
+| Flow with pillar chips | 3 | 4 columns left to right (inputs -> product parts -> outputs), arrows, pillar chips under the part that delivers each | build |
+| Wrong vs right artifact | 5 | ✗ card (the naive way) above ✓ card (your way) on the left, the definition or config on the right | build |
+| Who gains | 6 | 4 columns, one per buyer role: icon, role, their fear in quotes, 3 checks | build |
+| Pilot plan | 6 | 4 chevrons (Discover, Build, Use, Decide), one line each, scope + sourced cost band | build |
+
+**Takeaway bar:** in scene-led decks every content slide ends with a full-width tinted band
+holding one "so what" sentence, at the same position on every slide.
+
 ## Common frame on every slide
 ALL-CAPS kicker with an accent bar top-left, brand logo top-right, product name bottom-left,
 page number bottom-right. `Deck.frame()` draws it; call it last so it sits on top.

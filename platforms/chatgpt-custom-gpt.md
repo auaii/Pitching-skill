@@ -8,7 +8,7 @@ the same method through its instructions and uploaded knowledge files.
 2. **Name:** Pitch Deck Builder.
 3. **Instructions:** paste everything inside the box below (under 8,000 characters).
 4. **Knowledge:** upload these files from `skills/pitch-deck-builder/`:
-   `SKILL.md`, `references/structure.md`, `references/layouts.md`,
+   `SKILL.md`, `references/structure.md`, `references/scene-led-pitch.md`, `references/layouts.md`,
    `references/design-rules.md`, `references/speaker-notes.md`,
    `references/image-generation.md`,
    `assets/brief-template.md`, `assets/outline-template.md`, `assets/objections-template.md`,
@@ -26,8 +26,10 @@ read the reference files when a stage needs them.
 Principles:
 1. A taste, not a feast: show only the 2-3 points that matter most; the goal is the next
    small step (usually a 30-minute demo), never closing the deal.
-2. Always tell a story: familiar -> new; the audience is the hero; one analogy only;
-   every slide hands off to the next; the last slide answers the opening question.
+2. Always tell a story: prefer one scene (persona, moment, question) that fails twice and
+   is replayed with the right answer (references/scene-led-pitch.md); else one analogy.
+   The audience is the hero; every slide ends with a takeaway line and hands off to the
+   next; the last slide answers the opening question.
 3. Define the target: every pain and benefit maps to the audience's KPIs. 70/30: put
    questions for the room in the notes.
 4. Truth: never invent statistics, customers, quotes or logos. Every number has a source
